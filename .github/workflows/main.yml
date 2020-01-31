@@ -1,0 +1,21 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Kaitai
+      run: |
+        sudo apt-key adv --keyserver hkp://pool.sks-keyservers.net --recv 379CE192D401AB61
+        echo "deb https://dl.bintray.com/kaitai-io/debian jessie main" | sudo tee /etc/apt/sources.list.d/kaitai.list
+        sudo apt-get update
+        sudo apt-get install kaitai-struct-compiler
+    - name: Go to test/
+      run: cd test/
+    - name: Run test
+      run: ./run.sh
