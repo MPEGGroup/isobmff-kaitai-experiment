@@ -15,7 +15,5 @@ jobs:
         echo "deb https://dl.bintray.com/kaitai-io/debian jessie main" | sudo tee /etc/apt/sources.list.d/kaitai.list
         sudo apt-get update
         sudo apt-get install kaitai-struct-compiler
-    - name: Go to test/
-      run: cd test/
     - name: Run test
-      run: ./run.sh
+      run: cd test/ && ./run.sh
