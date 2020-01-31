@@ -9,12 +9,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install Kaitai
+    - name: Install Kaitai and other depedencies
       run: |
         sudo apt-key adv --no-tty --keyserver hkp://pool.sks-keyservers.net --recv 379CE192D401AB61
         echo "deb https://dl.bintray.com/kaitai-io/debian jessie main" | sudo tee /etc/apt/sources.list.d/kaitai.list
         sudo apt-get update
-        sudo apt-get install kaitai-struct-compiler
+        sudo apt-get install kaitai-struct-compiler python3-setuptools
     - name: Prepare test
       run:  cd test/ && pip3 install -r requirements.txt
     - name: Run test
