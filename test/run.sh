@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-ksc -t python ../isobmff-12/isobmff.ksy
+ksc -t python ../14496-12-isobmff/isobmff.ksy
 
 python3 dump.py "./vectors/1.mp4"
