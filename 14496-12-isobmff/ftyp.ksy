@@ -17,3 +17,5 @@ enums:
   brand:
     0x69736F6D: isom
     0x6D703431: mp41
+    0x69736F32: iso2
+    0x61766331: avc1

@@ -4,6 +4,7 @@ meta:
   endian: be
   imports:
     - ftyp
+    - moov
     - default
 
 doc: |
@@ -34,10 +35,12 @@ types:
           switch-on: type
           cases:
             'box_type::ftyp': ftyp
+            'box_type::moov': moov
             _: default
 
 enums:
   box_type:
     0x66747970: ftyp
+    0x66726565: free
     0x6d646174: mdat
     0x6d6f6f76: moov
