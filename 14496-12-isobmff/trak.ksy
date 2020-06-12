@@ -1,9 +1,9 @@
 meta:
-  id: moov
+  id: trak
   endian: be
   imports:
-    - mvhd
-    - trak
+    - mdia
+    - tkhd
     - default
 
 seq:
@@ -30,19 +30,17 @@ types:
         type:
           switch-on: type
           cases:
-            'box_type::mvhd': mvhd(version)
-            'box_type::trak': trak
+            'box_type::mdia': mdia
+            'box_type::tkhd': tkhd(version, flags.to_s)
             _: default
     instances:
       header_size:
         value: 8 + is_full_box.to_i * 4
       is_full_box:
-        value: type == box_type::mvhd
+        value: type == box_type::tkhd
 
 enums:
   box_type:
-    0x6d766864: mvhd
-    0x6d657461: meta
-    0x7472616b: trak
-    0x6d766578: mvex
-    0x75647461: udta
+    0x65647473: edts
+    0x6D646961: mdia
+    0x746B6864: tkhd

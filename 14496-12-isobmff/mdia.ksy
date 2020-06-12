@@ -1,9 +1,8 @@
 meta:
-  id: moov
+  id: mdia
   endian: be
   imports:
-    - mvhd
-    - trak
+    - mdhd
     - default
 
 seq:
@@ -30,19 +29,16 @@ types:
         type:
           switch-on: type
           cases:
-            'box_type::mvhd': mvhd(version)
-            'box_type::trak': trak
+            'box_type::mdhd': mdhd(version)
             _: default
     instances:
       header_size:
         value: 8 + is_full_box.to_i * 4
       is_full_box:
-        value: type == box_type::mvhd
+        value: type == box_type::mdhd
 
 enums:
   box_type:
-    0x6d766864: mvhd
-    0x6d657461: meta
-    0x7472616b: trak
-    0x6d766578: mvex
-    0x75647461: udta
+    0x68646C72: hdlr
+    0x6D646864: mdhd
+    0x6D696E66: minf

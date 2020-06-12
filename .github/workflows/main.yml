@@ -16,6 +16,6 @@ jobs:
         sudo apt-get update
         sudo apt-get install kaitai-struct-compiler python3-setuptools
     - name: Prepare test
-      run:  cd test/ && pip3 install -r requirements.txt
+      run:  cd tests/ && pip3 install -r requirements.txt
     - name: Run test
-      run: cd test/ && ./run.sh
+      run: cd tests/ && ./run.sh
