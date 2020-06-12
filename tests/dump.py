@@ -20,7 +20,11 @@ def print_data(box):
             print_box(child_box)
     else:
         for field in fields:
-            print(("{}: {}").format(field, getattr(box.data, field)))
+            if field == "sample_entries":
+                for sample_entry in box.data.sample_entries:
+                    print(("{}").format(sample_entry.type))
+            else:
+                print(("{}: {}").format(field, getattr(box.data, field)))
 
 def print_box(box):
     print("size: ", box.size)

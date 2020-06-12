@@ -1,9 +1,8 @@
 meta:
-  id: mdia
+  id: minf
   endian: be
   imports:
-    - minf
-    - mdhd
+    - stbl
     - default
 
 seq:
@@ -30,17 +29,17 @@ types:
         type:
           switch-on: type
           cases:
-            'box_type::mdhd': mdhd(version)
-            'box_type::minf': minf
+            'box_type::stbl': stbl
             _: default
     instances:
       header_size:
         value: 8 + is_full_box.to_i * 4
       is_full_box:
-        value: type == box_type::mdhd
-
+        value: (type == box_type::vmhd or
+                type == box_type::smhd)
 enums:
   box_type:
-    0x68646C72: hdlr
-    0x6D646864: mdhd
-    0x6D696E66: minf
+    0x64696E66: dinf
+    0x736D6864: smhd
+    0x7374626c: stbl
+    0x766D6864: vmhd
