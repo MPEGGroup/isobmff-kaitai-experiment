@@ -15,6 +15,8 @@ doc: |
   of ISO/IEC 14496 is applicable to MPEG-4, but its technical content is
   identical to that of ISO/IEC 15444-12, which is applicable to JPEG 2000.
 
+doc-ref: ISO/IEC 14496-12:2015
+
 seq:
   - id: boxes
     type: box
@@ -26,9 +28,11 @@ types:
     seq:
       - id: size
         type: u4
+
       - id: type
         type: u4
         enum: box_type
+
       - id: data
         size: size - 8
         type:

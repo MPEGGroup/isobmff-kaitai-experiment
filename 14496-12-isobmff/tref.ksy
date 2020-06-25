@@ -25,9 +25,11 @@ types:
     seq:
       - id: size
         type: u4
+
       - id: type
         type: u4
         enum: reference_type
+
       - id: data
         size: size - 8
         type:
