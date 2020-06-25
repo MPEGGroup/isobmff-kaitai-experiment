@@ -2,6 +2,7 @@ meta:
   id: stbl
   endian: be
   imports:
+    - stsc
     - stsd
     - stts
     - default
@@ -38,6 +39,7 @@ types:
         type:
           switch-on: type
           cases:
+            'box_type::stsc': stsc
             'box_type::stsd': stsd
             'box_type::stts': stts
             _: default
