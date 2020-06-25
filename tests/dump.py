@@ -22,7 +22,7 @@ def print_data(obj):
     # We get all the fields of the object ('_' are internal attributes)
     fields = [f for f in obj.__dict__ if not f.startswith('_') and f != 'blob']
     for field in fields:
-        if field == 'boxes' or field == 'sample_entries':
+        if field == 'boxes' or field == 'sample_entries' or field == 'sample_info':
             continue
         elif hasattr(getattr(obj, field), '__dict__'):
             print_data(getattr(obj, field))
@@ -37,6 +37,9 @@ def print_data_box(box):
     elif hasattr(box.data, 'sample_entries'):
         for sample_entry in box.data.sample_entries:
             print_box(sample_entry)
+    elif hasattr(box.data, 'sample_info'):
+        for sample_info in box.data.sample_info:
+            print_data(sample_info)
 
 def print_box(box):
     print('size: ', box.size)
