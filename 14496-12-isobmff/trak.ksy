@@ -4,6 +4,7 @@ meta:
   imports:
     - mdia
     - tkhd
+    - tref
     - default
 
 seq:
@@ -32,6 +33,7 @@ types:
           cases:
             'box_type::mdia': mdia
             'box_type::tkhd': tkhd(version, flags.to_s)
+            'box_type::tref': tref
             _: default
     instances:
       header_size:
@@ -44,3 +46,4 @@ enums:
     0x65647473: edts
     0x6D646961: mdia
     0x746B6864: tkhd
+    0x74726566: tref
