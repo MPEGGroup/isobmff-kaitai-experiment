@@ -41,4 +41,3 @@ enums:
     0x6e756c6c: 'null'
     0x736f756e: soun
     0x76696465: vide
-    #0x00000000: zero

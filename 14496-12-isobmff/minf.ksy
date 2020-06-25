@@ -3,7 +3,12 @@ meta:
   endian: be
   imports:
     - stbl
+    - vmhd
     - default
+
+doc: Media Information Box
+
+doc-ref: ISO/IEC 14496-12:2015, section 8.4.4
 
 seq:
   - id: boxes
@@ -30,6 +35,7 @@ types:
           switch-on: type
           cases:
             'box_type::stbl': stbl
+            'box_type::vmhd': vmhd
             _: default
     instances:
       header_size:
