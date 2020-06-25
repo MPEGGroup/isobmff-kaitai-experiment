@@ -1,15 +1,13 @@
 meta:
-  id: minf
+  id: dinf
   endian: be
   imports:
-    - dinf
-    - stbl
-    - vmhd
+    - dref
     - default
 
-doc: Media Information Box
+doc: Data Information Box
 
-doc-ref: ISO/IEC 14496-12:2015, section 8.4.4
+doc-ref: ISO/IEC 14496-12:2015, section 8.7.1
 
 seq:
   - id: boxes
@@ -39,9 +37,7 @@ types:
         type:
           switch-on: type
           cases:
-            'box_type::dinf': dinf
-            'box_type::stbl': stbl
-            'box_type::vmhd': vmhd
+            'box_type::dref': dref
             _: default
 
     instances:
@@ -49,11 +45,7 @@ types:
         value: 8 + is_full_box.to_i * 4
 
       is_full_box:
-        value: (type == box_type::vmhd or
-                type == box_type::smhd)
+        value: (type == box_type::dref)
 enums:
   box_type:
-    0x64696E66: dinf
-    0x736D6864: smhd
-    0x7374626c: stbl
-    0x766D6864: vmhd
+    0x64726566: dref
