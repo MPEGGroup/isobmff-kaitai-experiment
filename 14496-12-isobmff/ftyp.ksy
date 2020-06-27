@@ -11,12 +11,16 @@ seq:
     type: u4
     enum: brand
     doc: is a brand identifier
+
   - id: minor_version
     type: u4
+    doc: is an informative integer for the minor version of the major brand
+
   - id: compatible_brands
     type: u4
     enum: brand
     repeat: eos
+    doc: is a list, to the end of the box, of brands
 
 enums:
   brand:
