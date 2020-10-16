@@ -1,5 +1,5 @@
 meta:
-  id: tkhd
+  id: iloc
   endian: be
 
 params:
@@ -17,10 +17,11 @@ seq:
     type: b4
   - id: index_size
     type: b4
-    if: version == 1 or version == 2
-  - id: reserved
-    type: b4
-    if: version != 1 and version != 2
+  # Below is the syntax in the spec but apparently not followed. Problem is index_size cannot be optional.
+  #  if: version == 1 or version == 2
+  #- id: reserved
+  #  type: b4
+  #  if: version != 1 and version != 2
   - id: item_count
     type:
       switch-on: version
@@ -29,12 +30,22 @@ seq:
         1: u2
         2: u4
   - id: resources
-    type: resource_item
+    type: resource_item(version, base_offset_size, index_size, offset_size, length_size)
     repeat: expr
     repeat-expr: item_count
 
 types:
   extent:
+    params:
+      - id: version
+        type: u1
+      - id: index_size
+        type: u1
+      - id: offset_size
+        type: u1
+      - id: length_size
+        type: u1
+
     seq:
       - id: extent_index
         type: 
@@ -55,7 +66,20 @@ types:
           cases:
             4: u4 
             8: u8
+
   resource_item:
+    params:
+      - id: version
+        type: u1
+      - id: base_offset_size
+        type: u1
+      - id: index_size
+        type: u1
+      - id: offset_size
+        type: u1
+      - id: length_size
+        type: u1
+
     seq:
       - id: item_id
         type:
@@ -81,5 +105,6 @@ types:
       - id: extent_count
         type: u2
       - id: extents
+        type: extent(version, index_size, offset_size, length_size)
         repeat: expr
         repeat-expr: extent_count

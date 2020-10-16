@@ -2,6 +2,7 @@ meta:
   id: moov
   endian: be
   imports:
+    - meta
     - mvhd
     - mvex
     - trak
@@ -35,6 +36,7 @@ types:
         type:
           switch-on: type
           cases:
+            'box_type::meta': meta(version)
             'box_type::mvhd': mvhd(version)
             'box_type::mvex': mvex
             'box_type::trak': trak
@@ -45,7 +47,8 @@ types:
         value: 8 + is_full_box.to_i * 4
 
       is_full_box:
-        value: type == box_type::mvhd
+        value: (type == box_type::meta or
+                type == box_type::mvhd)
 
 enums:
   box_type:
